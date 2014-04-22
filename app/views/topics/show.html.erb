@@ -1,2 +1,24 @@
-<h1>Topics#show</h1>
-<p>Find me in app/views/topics/show.html.erb</p>
+<h1>All Questions</h1>
+<h2><%= @topic.title %></h2>
+<% @questions.each do |question| %>
+  <div class="media">
+    <div class="media-body">
+      <h4 class="media-heading">
+        <%= question.title %>
+      </h4> 
+       <small>
+          submitted <%= time_ago_in_words(question.created_at) %> ago by <%= question.user.name %>
+      </small>
+
+       <h5><%= question.answers.count %> Answers</h5>
+          
+       <% question.answers.each do |answer| %>
+          <p><%= answer.body %><br/>
+          <small>submitted <%= time_ago_in_words(answer.created_at) %> ago by <%= answer.user.name %>
+          </small>
+          </p>
+       <% end %>
+    </div>
+  </div>
+  <hr>
+<% end %>

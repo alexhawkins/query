@@ -8,7 +8,7 @@
         <h4 class="media-heading">
           <%= question.title %>
           <small>
-          submitted <%= time_ago_in_words(question.created_at) %> ago by <%= question.user %><br/>
+          submitted <%= time_ago_in_words(question.created_at) %> ago by <%= question.user.name %><br/>
           <%= question.answers.count %> Answers
           </small>
         </h4> 

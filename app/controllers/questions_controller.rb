@@ -6,7 +6,7 @@ class QuestionsController < ApplicationController
 
   def show
     @topic = Topic.find(params[:topic_id])
-    @question = @topic.questions.find(params[:id])
+    @question = Question.find(params[:id])
   end
 
   def new
@@ -21,7 +21,7 @@ class QuestionsController < ApplicationController
 
     if @question.save
        flash[:notice] = "Question was saved."
-       redirect_to :root
+       redirect_to @topic
     else
       flash[:error] = "There was an error saving the question. Please try again."
       render :new
@@ -39,7 +39,7 @@ class QuestionsController < ApplicationController
 
     if @question.update_attributes(question_params)
       flash[:notice] = "Question was saved."
-      redirect_to :root
+      redirect_to @topic
     else
       flash[:error] = "There was an error saving the question. Please try again."
       render :edit

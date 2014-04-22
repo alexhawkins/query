@@ -2,7 +2,7 @@ Query::Application.routes.draw do
 
   devise_for :users
   get "home/index"
-  resources :topics, except: [:index] do 
+  resources :topics do 
     resources :questions do
       resources :answers, only: [:create, :destroy]
     end
