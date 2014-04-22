@@ -41,6 +41,9 @@ end
 gem 'thin', group: :development
 gem 'newrelic_rpm'
 gem 'bootstrap-sass', '~> 3.1.1'
+gem 'devise'
+gem 'pundit'
+gem 'figaro'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

@@ -1,0 +1,17 @@
+
+<h1>All Questions</h1>
+<% @topics.each do |topic| %>
+  <h3><%= topic.title %></h3>
+  <% @questions.each do |question| %>
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading">
+          <%= question.title %>
+        </h4> 
+           <% question.answers.each do |answer| %>
+            <p><%= answer.body %></p>
+           <% end %>
+      </div>
+    </div>
+  <% end %>
+<% end %>

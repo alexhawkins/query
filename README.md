@@ -8,6 +8,10 @@
 
 * Demo available on [Heroku](http://lit-peak-5935.herokuapp.com/)
 
+##Setup
+
+Make a copy of `config/application.example.yml` and name it `application.yml`. It will be used to store your credential information. The `application.yml` file must be included in `.gitignore` to prevent public access to your credentials once your code is pushed to Github.
+
 ##Thank you!
 
 * [@cbeck](https://github.com/cbeck/)
