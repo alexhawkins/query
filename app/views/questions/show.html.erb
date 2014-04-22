@@ -1,2 +1,5 @@
-<h1>Questions#show</h1>
-<p>Find me in app/views/questions/show.html.erb</p>
+<h1><%= @question.title %></h1>
+
+<%= link_to "Edit", edit_topic_question_path(@topic, @question), class: 'btn btn-success' %>
+
+<p><%= @question.body %></p>
