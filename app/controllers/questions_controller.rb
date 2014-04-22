@@ -11,6 +11,10 @@ class QuestionsController < ApplicationController
   def new
   end
 
+  def create
+    @question = current_user.questions.build(params.require(:question).permit(:title, :answered)
+  end
+
   def edit
   end
 end
