@@ -1,5 +1,7 @@
 <h1><%= @question.title %></h1>
 
-<%= link_to "Edit", edit_topic_question_path(@topic, @question), class: 'btn btn-success' %>
+<% if policy(@question).edit? %>
+  <%= link_to "Edit", edit_topic_question_path(@topic, @question), class: 'btn btn-success' %>
+<% end %>
 
 <p><%= @question.body %></p>

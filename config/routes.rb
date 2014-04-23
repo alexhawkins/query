@@ -8,5 +8,5 @@ Query::Application.routes.draw do
     end
   end
 
-  root to: 'home#index'
+  root to: 'topics#index'
 end

@@ -2,7 +2,7 @@
       <div class="media">
         <div class="media-body">
           <h4 class="media-heading">
-            <%= link_to topic.title, topic %> 
+            <%= link_to topic.title, topic_questions_path(topic) %> 
             <small>
               (<%= topic.questions.count %>)
             </small>
