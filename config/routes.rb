@@ -4,7 +4,7 @@ Query::Application.routes.draw do
   get "home/index"
   resources :topics do 
     resources :questions do
-      resources :answers, only: [:create, :destroy]
+      resources :answers, only: [:create, :destroy, :show, :edit, :new]
     end
   end
 

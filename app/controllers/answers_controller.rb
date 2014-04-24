@@ -3,6 +3,9 @@ class AnswersController < ApplicationController
   end
 
   def show
+    @topic = Topic.find(params[:topic_id])
+    @question = Question.find(params[:id])
+    @answer = Answer.find(params[:id])
   end
 
   def new

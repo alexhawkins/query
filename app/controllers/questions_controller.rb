@@ -42,7 +42,7 @@ class QuestionsController < ApplicationController
     authorize @question
     if @question.update_attributes(question_params)
       flash[:notice] = "Question was saved."
-      redirect_to topic_questions_path(@topic)
+      redirect_to topic_question_path(@topic, @question)
     else
       flash[:error] = "There was an error saving the question. Please try again."
       render :edit

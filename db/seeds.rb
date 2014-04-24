@@ -13,9 +13,9 @@ end
 users = User.all
 
 # Create Topics
-10.times do
+20.times do
   Topic.create(
-   title: Faker::Commerce.department,
+   title: Faker::Commerce.color,
    about: Faker::Lorem.paragraph
   )
 end
@@ -25,7 +25,6 @@ topics = Topic.all
 50.times do
   Question.create(
     user: users.sample,
-    topic: topics.sample,
     title:  Faker::Lorem.sentence,
     body:   Faker::Lorem.paragraph
   )
@@ -40,6 +39,13 @@ questions = Question.all
     body: Faker::Lorem.paragraph
   )
 end
+
+100.times do
+  QuestionTopic.create(
+    topic: topics.sample,
+    question: questions.sample
+    )
+end
 #modify one user which you can use to login
 User.first.update_attributes(
   name: 'Alex Hawkins',
@@ -47,6 +53,7 @@ User.first.update_attributes(
 )
 
 puts "Seed finished"
+puts "#{QuestionTopic.count} question topics created"
 puts "#{User.count} users created"
 puts "#{Topic.count } topics created"
 puts "#{Question.count} questions created"
