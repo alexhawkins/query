@@ -6,32 +6,28 @@
      <%= link_to topic.title, topic_path(topic), class: 'label label-primary' %>
     <% end %>
     <!-- show the title of the question -->
-    <h2><strong><%= @question.title %></strong>
-    <!-- show an edit button if user is a mebmer of the site -->
-      <% if policy(@question).edit? %>
-        <%= link_to "Edit", edit_topic_question_path(@topic, @question), class: 'btn btn-success btn-xs' %>
-      <% end %>
-    </h2>
+    <div id="js-edit-question">
+      <h2>
+      <strong><%= @question.title %></strong>
+      <!-- show an edit button if user is a mebmer of the site -->
+        <% if policy(@question).edit? %>
+         <%= link_to "Edit", edit_topic_question_path(@topic, @question),  class: 'btn btn-success btn-xs', remote: true %>
+        <% end %>
+      </h2>
+    </div>
 
     <p class="lead"><%= @question.body %></p>
-    <div class="answers-lead"><%= @question.answers.count %> Answers </div>
-    <div class="media">
-      <a class="pull-left" href="#">
-      <!--add votes here -->
-      </a>
-      <div class="media-body">
-        <% @question.answers.each do |answer| %>
-        <h4 class="media-heading"> <%= answer.user.name %> </h4>
-        <p> <%= answer.body %></p>
-        <p class="answer-feed-info">
-          <span><small><%= link_to "#{time_ago_in_words(answer.created_at)} ago", topic_question_answer_path(@topic, @question, answer), class: 'label label-default' %>
-          </small>
-          </span>
-        </p>
-        <% end %>
+    <div class="answers-lead js-answers-count">
+      <%= @question.answers.count %> Answers 
+    </div>
+    <%= render partial: 'answers/answers_form', locals: { topic: @topic, question: @question, answer: @answer } %>
+
+
+    <!-- Render Box to add Ansnwers -->
+      <div class="js-answers">
+          <%= render @answers %>
       </div>
     </div>
-  </div>
 
     <!--Sidebar Column -->
   <div class="col-md-4 col-md-offset-1">

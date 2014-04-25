@@ -1,0 +1,3 @@
+//$('#js-edit-question').html("<%= @question.title %>");
+$('#js-edit-question').html("<%= escape_javascript(render partial: 'questions/question_title', locals: { topic: @topic, question: @question }) %>");
+//$('#js-edit-question').prepend("<%= @question.title %>");

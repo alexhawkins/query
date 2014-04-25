@@ -1,0 +1,24 @@
+<%= content_tag :div, class: 'media', id: "answer-#{answer.id}" do %>
+      <a class="pull-left" href="#">
+      <!--VOTE COUNT FOR ANSWER -->
+      </a>
+      <div class="media-body">
+        <h4 class="media-heading"> 
+        <!-- USER NAME and INFO OF ANSWER -->
+          <%= answer.user.name %> 
+        </h4>
+        <!--ANSWER BODY -->
+        <p> <%= answer.body %></p>
+        <p class="answer-feed-info">
+          <!--DATE ANSWER WAS CREATED-->
+           <span>
+            <%= link_to "#{time_ago_in_words(answer.created_at)} ago", topic_question_answer_path(@topic, @question, answer), class: 'label label-default' %>
+          <!--DELETE BUTTON-->
+           <% if policy(answer).destroy? %>
+            <%= link_to "Delete", topic_question_answer_path(@topic, @question, answer), method: :delete, remote: true, class: 'label label-danger' %>
+           <% end %>
+
+          </span>
+        </p>
+      </div>
+<% end %>

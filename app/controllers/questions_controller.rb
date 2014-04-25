@@ -1,4 +1,6 @@
 class QuestionsController < ApplicationController
+  respond_to :html, :js
+
   def index
     @topic = Topic.find(params[:topic_id])
     @questions = @topic.questions
@@ -8,6 +10,8 @@ class QuestionsController < ApplicationController
   def show
     @topic = Topic.find(params[:topic_id])
     @question = Question.find(params[:id])
+    @answers = @question.answers
+    @answer = Answer.new
   end
 
   def new
@@ -34,6 +38,11 @@ class QuestionsController < ApplicationController
     @topic = Topic.find(params[:topic_id])
     @question = Question.find(params[:id])
     authorize @question
+
+    respond_with(@question) do |format|
+      format.html { redirect_to [@topic, @question]}
+      format.js
+    end
   end
 
   def update
@@ -41,12 +50,18 @@ class QuestionsController < ApplicationController
     @question = Question.find(params[:id])
     authorize @question
     if @question.update_attributes(question_params)
-      flash[:notice] = "Question was saved."
-      redirect_to topic_question_path(@topic, @question)
+      #flash[:notice] = "Question was saved."
+      #redirect_to topic_question_path(@topic, @question)
     else
-      flash[:error] = "There was an error saving the question. Please try again."
-      render :edit
+      #flash[:error] = "There was an error saving the question. Please try again."
+      #render :edit
     end
+
+    respond_with(@question) do |format|
+      format.html { redirect_to [@topic, @question]}
+      format.js
+    end
+
   end
 
   private 

@@ -1,0 +1,11 @@
+<p>
+  <%= form_for [@topic, @question], remote: true do |f| %>
+     <div class="form-group"><strong>
+        <%= f.text_field :title, class: 'form-control', :size => 40 %>
+     </strong>
+     </div>
+      <div class="form-group">
+        <%= f.submit "Update", class: 'btn btn-success hide'%>
+      </div>
+  <% end %>
+</p>

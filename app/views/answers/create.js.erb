@@ -1,0 +1,8 @@
+<% if @answer.valid? %>
+$('.js-answers').prepend("<%= escape_javascript(render(@answer)) %>");
+$('.js-answers-count').html("<%= @question.answers.count %> Answers");
+$('.new_answer').html("<%= escape_javascript(render partial: 'answers/answers_form', locals: { topic: @topic, question: @question, answer: @new_answer }) %>");
+<% else %>
+//render a new answer form
+$('.new_answer').html("<%= escape_javascript(render partial: 'answers/answers_form', locals: { topic: @topic, question: @question, answer: @new_answer }) %>");
+<% end %>
