@@ -1,7 +1,7 @@
-<h2>
-  <strong><%= @question.title %></strong>
+<p class="lead">
+  <%= @question.body %>
   <!-- show an edit button if user is a mebmer of the site -->
   <% if policy(@question).edit? %>
     <%= link_to "Edit", edit_topic_question_path(@topic, @question),  class: 'btn btn-success btn-xs', remote: true %>
-  <% end %> 
-</h2>
+  <% end %>
+</p>

@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140423235016) do
+ActiveRecord::Schema.define(version: 20140426042100) do
+
+  create_table "answer_votes", force: true do |t|
+    t.integer  "value"
+    t.integer  "user_id"
+    t.integer  "answer_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "answer_votes", ["answer_id"], name: "index_answer_votes_on_answer_id"
+  add_index "answer_votes", ["user_id"], name: "index_answer_votes_on_user_id"
 
   create_table "answers", force: true do |t|
     t.text     "body"
@@ -19,6 +30,7 @@ ActiveRecord::Schema.define(version: 20140423235016) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+    t.float    "rank"
   end
 
   add_index "answers", ["question_id"], name: "index_answers_on_question_id"
@@ -33,6 +45,17 @@ ActiveRecord::Schema.define(version: 20140423235016) do
 
   add_index "question_topics", ["question_id", "topic_id"], name: "index_question_topics_on_question_id_and_topic_id"
 
+  create_table "question_votes", force: true do |t|
+    t.integer  "value"
+    t.integer  "user_id"
+    t.integer  "question_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "question_votes", ["question_id"], name: "index_question_votes_on_question_id"
+  add_index "question_votes", ["user_id"], name: "index_question_votes_on_user_id"
+
   create_table "questions", force: true do |t|
     t.string   "title"
     t.boolean  "answered",   default: false
@@ -41,6 +64,7 @@ ActiveRecord::Schema.define(version: 20140423235016) do
     t.datetime "updated_at"
     t.integer  "user_id"
     t.text     "body"
+    t.float    "rank"
   end
 
   add_index "questions", ["topic_id"], name: "index_questions_on_topic_id"

@@ -1,12 +1,28 @@
 <%= content_tag :div, class: 'media', id: "answer-#{answer.id}" do %>
       <a class="pull-left" href="#">
       <!--VOTE COUNT FOR ANSWER -->
+      <%= render partial: 'answer_votes/voter', locals: { topic: @topic, question: @question, answer: answer } %>
       </a>
       <div class="media-body">
         <h4 class="media-heading"> 
         <!-- USER NAME and INFO OF ANSWER -->
-          <%= answer.user.name %> 
+          <%= link_to answer.user.name, user_path(answer.user) %> 
         </h4>
+        <!-- VOTERS NAME -->
+        <div class="vote-names">
+          <%= pluralize(answer.answer_votes.count, 'Vote') %>
+          <% unless answer.answer_votes.empty? %>
+            by
+            <% answer.answer_votes.each do |vote| %>
+            <!--check to make sure there is more than 1 vote and it's not the last vote -->
+              <% if answer.answer_votes.count > 1 && answer.answer_votes.last != vote %>
+               <%= link_to vote.user.name, user_path(vote.user) %>, 
+              <% else %>
+               <%= link_to vote.user.name, user_path(vote.user) %>
+              <% end %>
+            <% end %>
+          <% end %>
+        </div>
         <!--ANSWER BODY -->
         <p> <%= answer.body %></p>
         <p class="answer-feed-info">
@@ -20,5 +36,5 @@
 
           </span>
         </p>
-      </div>
+    </div>
 <% end %>

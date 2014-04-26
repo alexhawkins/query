@@ -46,6 +46,7 @@ end
     question: questions.sample
     )
 end
+
 #modify one user which you can use to login
 User.first.update_attributes(
   name: 'Alex Hawkins',

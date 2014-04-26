@@ -1,0 +1,11 @@
+<%= @user.name %>
+
+<h1>VOTED ON THE FOLLOWING ANSWERS </h1>
+<% @user.answer_votes.each do |vote| %>
+  <p><%= link_to vote.answer.body, '#' %></p>
+<% end %>
+
+<h1>ANSWERED THE FOLLOWING QUESTIONS</h1>
+<% @user.answers.each do |answer| %>
+  <p><%= link_to answer.question.title, '#' %></p>
+<% end %>

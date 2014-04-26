@@ -5,25 +5,20 @@
     <% @question.topics.each do |topic| %>
      <%= link_to topic.title, topic_path(topic), class: 'label label-primary' %>
     <% end %>
-    <!-- show the title of the question -->
+    <!-- QUESTION TITLE & DETAILS-->
     <div id="js-edit-question">
-      <h2>
-      <strong><%= @question.title %></strong>
-      <!-- show an edit button if user is a mebmer of the site -->
-        <% if policy(@question).edit? %>
-         <%= link_to "Edit", edit_topic_question_path(@topic, @question),  class: 'btn btn-success btn-xs', remote: true %>
-        <% end %>
-      </h2>
+      <%= render partial: 'questions/question_title', locals: { topic: @topic, question: @question } %>
     </div>
-
-    <p class="lead"><%= @question.body %></p>
+    <!-- ANSWER COUNT -->
     <div class="answers-lead js-answers-count">
       <%= @question.answers.count %> Answers 
     </div>
+
+    <!-- ANSWER FORM -->
     <%= render partial: 'answers/answers_form', locals: { topic: @topic, question: @question, answer: @answer } %>
 
 
-    <!-- Render Box to add Ansnwers -->
+    <!-- ANSWERS -->
       <div class="js-answers">
           <%= render @answers %>
       </div>
