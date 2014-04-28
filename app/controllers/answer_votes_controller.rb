@@ -1,14 +1,21 @@
 class AnswerVotesController < ApplicationController
+  respond_to :html, :js
   before_filter :setup
 
   def up_vote
     update_vote(1)
-    redirect_to :back
+    respond_with(@answer) do |format|
+      format.html { redirect_to :back }
+      format.js
+    end
   end
 
   def down_vote
     update_vote(-1)
-    redirect_to :back
+    respond_with(@answer) do |format|
+      format.html { redirect_to :back }
+      format.js
+    end
   end
 
   private
@@ -21,6 +28,7 @@ class AnswerVotesController < ApplicationController
       #look for an existing vote in our database by this person so that we don't create multiple
       @answer_vote = @answer.answer_votes.where(user_id: current_user.id).first
     else
+      # make sure user is signed in to vote, if not redirect them
       redirect_to new_user_session_path
     end
 

@@ -18,15 +18,19 @@
 
           <!-- ANSWER FORM -->
           <%= content_tag :div, id: "js-question-answer-#{question.id}" do %>
+            <p>
             <%= render partial: 'answers/answers_form', locals: { question: question, answer: @new_answer } %>
+            </p>
           <% end %>
 
           <!--LINKS: FOLLOW/ ANSWER COUNT / SHARE-->
-          <h5>
-            <%= link_to "Follow", '#' %> &bull;
-            <%= link_to "#{question.answers.count} Answers" , question_path(question, anchor: 'js-answers'), id: "js-answers-count-#{question.id}" %> &bull;
-            <%= link_to "Share", '#' %>
-          </h5>
+          <div class="answer-links">
+            <h5>
+              <%= link_to "Follow", '#' %> &bull;
+              <%= link_to "#{question.answers.count} Answers" , question_path(question, anchor: 'js-answers'), id: "js-answers-count-#{question.id}" %> &bull;
+              <%= link_to "Share", '#' %>
+            </h5>
+          </div>
               
         </div>
       <% end %>
