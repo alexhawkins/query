@@ -33,11 +33,21 @@ questions = Question.all
 
 # Create Answers by picking a random question to associate with each question
 100.times do
-  Answer.create(
+  answer = Answer.create(
     user: users.sample,
     question: questions.sample,
     body: Faker::Lorem.paragraph
   )
+
+  # create n number of votes for answer
+  10.times do
+    val = Random.new.rand(-1..1)
+    val = val == 0 ? 1 : val 
+    vote = answer.answer_votes.create(
+      value: val,
+      user: users.sample
+    ) 
+  end
 end
 
 100.times do

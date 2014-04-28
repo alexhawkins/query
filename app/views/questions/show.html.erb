@@ -7,7 +7,7 @@
     <% end %>
     <!-- QUESTION TITLE & DETAILS-->
     <div id="js-edit-question">
-      <%= render partial: 'questions/question_title', locals: { topic: @topic, question: @question } %>
+      <%= render partial: 'questions/question_title', locals: { question: @question } %>
     </div>
     <!-- ANSWER COUNT -->
     <div class="answers-lead js-answers-count">
@@ -15,11 +15,11 @@
     </div>
 
     <!-- ANSWER FORM -->
-    <%= render partial: 'answers/answers_form', locals: { topic: @topic, question: @question, answer: @answer } %>
+    <%= render partial: 'answers/answers_form', locals: { question: @question, answer: @answer } %>
 
 
     <!-- ANSWERS -->
-      <div class="js-answers">
+      <div class="js-answers", id="js-answers">
           <%= render @answers %>
       </div>
     </div>
@@ -59,7 +59,7 @@
       <% @question.topics.each do |topic| %>
         <!--of the related topics, loop through each question in said topic-->
         <% topic.questions.each do |question| %>
-          <%= link_to question.title, topic_question_path(topic, question), class: 'list-group-item'%>
+          <%= link_to question.title, question_path(question), class: 'list-group-item'%>
         <% end %>
       <% end %>
     </div>

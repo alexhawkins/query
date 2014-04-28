@@ -6,3 +6,5 @@ $('.new_answer').html("<%= escape_javascript(render partial: 'answers/answers_fo
 //render a new answer form
 $('.new_answer').html("<%= escape_javascript(render partial: 'answers/answers_form', locals: { topic: @topic, question: @question, answer: @new_answer }) %>");
 <% end %>
+$('#js-question-answer-' +<%= @question.id %>).html("<%= escape_javascript(render(@answer)) %>");
+$('#js-answers-count-' +<%= @question.id %>).html("<%= @question.answers.count %> Answers");

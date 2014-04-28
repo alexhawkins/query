@@ -2,6 +2,7 @@ class Answer < ActiveRecord::Base
   belongs_to :question
   belongs_to :user
   has_many :answer_votes, dependent: :destroy
+  has_many :topics, through: :answer_topics 
   
   default_scope { order('rank DESC') }
 

@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140426042100) do
+ActiveRecord::Schema.define(version: 20140428174630) do
+
+  create_table "answer_topics", force: true do |t|
+    t.integer  "answer_id"
+    t.integer  "topic_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "answer_topics", ["answer_id"], name: "index_answer_topics_on_answer_id"
+  add_index "answer_topics", ["topic_id"], name: "index_answer_topics_on_topic_id"
 
   create_table "answer_votes", force: true do |t|
     t.integer  "value"

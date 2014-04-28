@@ -1,7 +1,7 @@
 <%= content_tag :div, class: 'media', id: "answer-#{answer.id}" do %>
       <a class="pull-left" href="#">
       <!--VOTE COUNT FOR ANSWER -->
-      <%= render partial: 'answer_votes/voter', locals: { topic: @topic, question: @question, answer: answer } %>
+      <%= render partial: 'answer_votes/voter', locals: { question: @question, answer: answer } %>
       </a>
       <div class="media-body">
         <h4 class="media-heading"> 
@@ -28,10 +28,10 @@
         <p class="answer-feed-info">
           <!--DATE ANSWER WAS CREATED-->
            <span>
-            <%= link_to "#{time_ago_in_words(answer.created_at)} ago", topic_question_answer_path(@topic, @question, answer), class: 'label label-default' %>
+            <%= link_to "#{time_ago_in_words(answer.created_at)} ago", question_answer_path(@question, answer), class: 'label label-default' %>
           <!--DELETE BUTTON-->
            <% if policy(answer).destroy? %>
-            <%= link_to "Delete", topic_question_answer_path(@topic, @question, answer), method: :delete, remote: true, class: 'label label-danger' %>
+            <%= link_to "Delete", question_answer_path(@question, answer), method: :delete, remote: true, class: 'label label-danger' %>
            <% end %>
 
           </span>

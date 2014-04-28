@@ -1,24 +1,35 @@
 <div class="row">
   <div class="col-md-6 col-md-offset-1">
+  <!--Topic Title -->
   <h3><%= @topic.title %></h3>
     <% @questions.each do |question| %>
-      <div class="media">
+     <%= content_tag :div, class: 'media', id: "questions-#{question.id}" do %>
         <div class="media-body">
-          <p>
-            Question added to <%= link_to @topic.title, topic_path(@topic) %> <%= link_to time_ago_in_words(question.created_at), topic_question_path(@topic, question), class: "label label-default" %>
-          </p>
+          <div class="question-added-section">
+          <!--QUESTION ADDED TO WHAT TOPIC? -->
+            Question added to topic <%= link_to @topic.title, topic_path(@topic),  class: "label label-default" %> &bull; <%= link_to "#{time_ago_in_words(question.created_at)} ago", question_path(question) %>
+          </div>
+           <!-- QUESTION TITLE + LINK -->
           <h4 class="media-heading">
-            <%= link_to question.title,  topic_question_path(@topic, question) %>
-          </h4> 
-           <small>
-              submitted <%= time_ago_in_words(question.created_at) %> ago by <%= question.user.name %>
-          </small>
-          <p><%= question.body %></p>
+            <%= link_to question.title,  question_path(question) %>
+          </h4>
+          <!-- QUESTION BODY -->
+          <div><%= question.body %></div>
 
-           <h5><%= link_to "#{question.answers.count} Answers" , topic_question_path(@topic, question) %></h5>
+          <!-- ANSWER FORM -->
+          <%= content_tag :div, id: "js-question-answer-#{question.id}" do %>
+            <%= render partial: 'answers/answers_form', locals: { question: question, answer: @new_answer } %>
+          <% end %>
+
+          <!--LINKS: FOLLOW/ ANSWER COUNT / SHARE-->
+          <h5>
+            <%= link_to "Follow", '#' %> &bull;
+            <%= link_to "#{question.answers.count} Answers" , question_path(question, anchor: 'js-answers'), id: "js-answers-count-#{question.id}" %> &bull;
+            <%= link_to "Share", '#' %>
+          </h5>
               
         </div>
-      </div>
+      <% end %>
       <hr>
     <% end %>
   </div>

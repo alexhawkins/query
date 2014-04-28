@@ -3,6 +3,7 @@ class Topic < ActiveRecord::Base
   # a topic does have many questions as long as we go through question_topics to get there
   has_many :question_topics
   has_many :questions, through: :question_topics
+  has_many :answers, through: :answer_topics
   #sort alphabetically
   scope :alphabetically, -> { order('title ASC') }
 

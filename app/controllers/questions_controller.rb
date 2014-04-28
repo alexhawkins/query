@@ -8,7 +8,6 @@ class QuestionsController < ApplicationController
   end
 
   def show
-    @topic = Topic.find(params[:topic_id])
     @question = Question.find(params[:id])
     @answers = @question.answers
     @answer = Answer.new
@@ -21,9 +20,7 @@ class QuestionsController < ApplicationController
   end
 
   def create
-    @topic = Topic.find(params[:topic_id])
     @question = current_user.questions.build(question_params)
-    @question.topic = @topic
     authorize @question
     if @question.save
        flash[:notice] = "Question was saved."
@@ -35,18 +32,16 @@ class QuestionsController < ApplicationController
   end
 
   def edit
-    @topic = Topic.find(params[:topic_id])
     @question = Question.find(params[:id])
     authorize @question
 
     respond_with(@question) do |format|
-      format.html { redirect_to [@topic, @question]}
+      format.html { redirect_to [@question]}
       format.js
     end
   end
 
   def update
-    @topic = Topic.find(params[:topic_id])
     @question = Question.find(params[:id])
     authorize @question
     if @question.update_attributes(question_params)
@@ -58,7 +53,7 @@ class QuestionsController < ApplicationController
     end
 
     respond_with(@question) do |format|
-      format.html { redirect_to [@topic, @question]}
+      format.html { redirect_to [@question]}
       format.js
     end
 
@@ -67,6 +62,6 @@ class QuestionsController < ApplicationController
   private 
 
   def question_params
-    params.require(:question).permit(:title, :body, :topic_id, :answered)
+    params.require(:question).permit(:title, :body, :answered)
   end
 end

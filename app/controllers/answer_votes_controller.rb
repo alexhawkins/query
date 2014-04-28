@@ -15,7 +15,7 @@ class AnswerVotesController < ApplicationController
 
   def setup
     if current_user
-      @topic = Topic.find(params[:topic_id])
+      #@topic = Topic.find(params[:topic_id])
       @question = Question.find(params[:question_id])
       @answer = @question.answers.find(params[:answer_id])
       #look for an existing vote in our database by this person so that we don't create multiple

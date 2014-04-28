@@ -3,14 +3,13 @@ class AnswersController < ApplicationController
   respond_to :html, :js
 
   def show
-    @topic = Topic.find(params[:topic_id])
     @question = Question.find(params[:question_id])
     @answer = Answer.find(params[:id])
   end
   
   def create
-    @topic = Topic.find(params[:topic_id])
-    @question = @topic.questions.find(params[:question_id])
+    #@topic = Topic.find(params[:topic_id])
+    @question = Question.find(params[:question_id])
     @answers = @question.answers
     @answer = current_user.answers.build(params.require(:answer).permit(:body, :question_id, :user_id))
     @answer.question = @question
@@ -23,7 +22,7 @@ class AnswersController < ApplicationController
     end
 
     respond_with(@answer) do |format|
-      format.html { redirect_to [@topic, @question]}
+      format.html { redirect_to :back }
       format.js
     end
   end
@@ -32,8 +31,8 @@ class AnswersController < ApplicationController
   end
 
   def destroy
-    @topic = Topic.find(params[:topic_id])
-    @question = @topic.questions.find(params[:question_id])
+    #@topic = Topic.find(params[:topic_id])
+    @question = Question.find(params[:question_id])
     @answer = @question.answers.find(params[:id])
     authorize @answer
     if @answer.destroy
@@ -43,7 +42,7 @@ class AnswersController < ApplicationController
     end
 
     respond_with(@answer) do |format|
-      format.html { redirect_to [@topic, @question]}
+      format.html { redirect_to [@question]}
       format.js
     end
 
