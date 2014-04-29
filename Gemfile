@@ -47,7 +47,11 @@ gem 'devise'
 gem 'pundit'
 gem 'figaro'
 gem 'faker'
-
+#gem 'cocoon'
+#gem 'simple_form'
+#gem 'slim'
+gem 'bootstrap-x-editable-rails'
+gem 'will_paginate', '~> 3.0.5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

@@ -7,7 +7,9 @@
       <div class="media-body">
         <h4 class="media-heading"> 
         <!-- USER NAME and INFO OF ANSWER -->
-          <%= link_to answer.user.name, user_path(answer.user) %> 
+          <a href="#" data-xeditable="true" data-pk="<%= answer.user.id %>" data-model="user" data-name="name" data-url="<%=  user_path(answer.user) %>" data-title="Enter Name">
+          <%= answer.user.name %>
+          </a>
         </h4>
         <!-- VOTERS NAME -->
         <div class="vote-names">

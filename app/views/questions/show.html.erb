@@ -5,6 +5,7 @@
     <% @question.topics.each do |topic| %>
      <%= link_to topic.title, topic_path(topic), class: 'label label-primary' %>
     <% end %>
+
     <!-- QUESTION TITLE & DETAILS-->
     <div id="js-edit-question">
       <%= render partial: 'questions/question_title', locals: { question: @question } %>

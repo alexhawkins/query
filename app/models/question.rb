@@ -2,10 +2,16 @@ class Question < ActiveRecord::Base
   #has_and_belongs_to_many :topics # topic_id foreign key
   has_many :question_topics
   # a question does have many topics as long as we go through question_topics to get there
-  has_many :topics, through: :question_topics 
+  has_many :topics, through: :question_topics
+  #allows us to manage Topics on our Question form
+  accepts_nested_attributes_for :topics
+  accepts_nested_attributes_for :question_topics
+
   belongs_to :user # user_id foreign key
   has_many :answers, dependent: :destroy
   has_many :question_votes, dependent: :destroy
+ 
+ 
 
   default_scope { order('created_at DESC') }
 

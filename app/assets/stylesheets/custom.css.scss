@@ -7,6 +7,20 @@
   font-size: .95em;
   padding-bottom: 2px;
 }
+.question-body {
+  a {
+    color: #999;
+    border-bottom: 1px dashed #999;
+    &:hover{
+     color: #BABABA;
+     border-bottom: 1px dashed #BABABA;
+    }
+    &:active{
+     color: #BABABA;
+     border-bottom: 1px dashed #BABABA;
+    }
+  }
+}
 
 
 /*ANSWERS*/

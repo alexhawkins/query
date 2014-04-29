@@ -16,18 +16,29 @@ class QuestionsController < ApplicationController
   def new
     @topic = Topic.find(params[:topic_id])
     @question = Question.new
+    @question.topic = @topic
     authorize @question
   end
 
   def create
+    #@topic = Topic.find(params[:id]
+    #@topic = Topic.find(params[:id])
+    #@topic = Topic.find(params[:topic_id])
     @question = current_user.questions.build(question_params)
+    @question.save!
+    @question_topic = QuestionTopic.new(question_id: @question.id, topic_id: 12)
+    @question_topic.save
+    #@topic.questions << @question
+    #@topic.questions.save!
+    #@question.topics << @topic
+    #@question.topic = @topic
     authorize @question
     if @question.save
        flash[:notice] = "Question was saved."
-       redirect_to @topic
+       redirect_to @question
     else
       flash[:error] = "There was an error saving the question. Please try again."
-      render :new
+      #render :new
     end
   end
 

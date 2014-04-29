@@ -9,8 +9,8 @@ class TopicsController < ApplicationController
     #eager loading, take advantage of later
     #@questions = @topic.questions
     @questions = @topic.questions.includes(:user).includes(:answers)
-   #@question = Question.find(params[:question_id])
-   #@answers = @question.answers
+    @new_question = Question.new
+   #@answers = @q@questions.find(params[:question_id)]uestion.answers
     @new_answer = Answer.new
     #@answers = @questions.answers
   end

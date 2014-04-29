@@ -69,7 +69,6 @@ ActiveRecord::Schema.define(version: 20140428174630) do
   create_table "questions", force: true do |t|
     t.string   "title"
     t.boolean  "answered",   default: false
-    t.integer  "topic_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
@@ -77,7 +76,6 @@ ActiveRecord::Schema.define(version: 20140428174630) do
     t.float    "rank"
   end
 
-  add_index "questions", ["topic_id"], name: "index_questions_on_topic_id"
   add_index "questions", ["user_id"], name: "index_questions_on_user_id"
 
   create_table "topics", force: true do |t|

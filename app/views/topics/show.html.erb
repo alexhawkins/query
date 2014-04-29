@@ -2,6 +2,7 @@
   <div class="col-md-6 col-md-offset-1">
   <!--Topic Title -->
   <h3><%= @topic.title %></h3>
+   <%= render partial: 'questions/questions_form', locals: {question: @new_question, topic: @topic } %>
     <% @questions.each do |question| %>
      <%= content_tag :div, class: 'media', id: "questions-#{question.id}" do %>
         <div class="media-body">
@@ -14,7 +15,11 @@
             <%= link_to question.title,  question_path(question) %>
           </h4>
           <!-- QUESTION BODY -->
-          <div><%= question.body %></div>
+          <div class="question-body">
+            <a href="#" data-xeditable="true" data-pk="<%= question.id %>" data-model="question" data-name="body" data-url="<%= question_path(question) %>" data-title="Enter Question Details">
+              <%= question.body %>
+            </a>
+          </div>
 
           <!-- ANSWER FORM -->
           <%= content_tag :div, id: "js-question-answer-#{question.id}" do %>
