@@ -16,27 +16,18 @@ class QuestionsController < ApplicationController
   end
 
   def new
-    @topic = Topic.find(params[:topic_id])
     @question = Question.new
-    @question.topic = @topic
     authorize @question
   end
 
-  def create
-    #@topic = Topic.find(params[:id]
-    #@topic = Topic.find(params[:id])
-    #@topic = Topic.find(params[:topic_id])
+  def create 
     @question = current_user.questions.build(question_params)
     @question.save!
-    @question_topic = QuestionTopic.new(question_id: @question.id, topic_id: 12)
+    @question_topic = QuestionTopic.new(question_id: @question.id, topic_id: params[:topic_id])
     @question_topic.save
-    #@topic.questions << @question
-    #@topic.questions.save!
-    #@question.topics << @topic
-    #@question.topic = @topic
     authorize @question
     if @question.save
-       flash[:notice] = "Question was saved."
+       #flash[:notice] = "Question was saved."
        redirect_to @question
     else
       flash[:error] = "There was an error saving the question. Please try again."
@@ -67,6 +58,22 @@ class QuestionsController < ApplicationController
 
     respond_with(@question) do |format|
       format.html { redirect_to [@question]}
+      format.js
+    end
+  end
+
+   def destroy
+    #@topic = Topic.find(params[:topic_id])
+    @question = Question.find(params[:id])
+    authorize @question
+    if @question.destroy
+      #flash[:notice] = "Question was removed."
+    else
+      #flash[:error] = "Question couldn't be deleted. Try again."
+    end
+
+    respond_with(@question) do |format|
+      format.html { redirect_to @question }
       format.js
     end
 

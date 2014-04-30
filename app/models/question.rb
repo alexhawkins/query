@@ -1,6 +1,6 @@
 class Question < ActiveRecord::Base
   #has_and_belongs_to_many :topics # topic_id foreign key
-  has_many :question_topics
+  has_many :question_topics, dependent: :destroy
   # a question does have many topics as long as we go through question_topics to get there
   has_many :topics, through: :question_topics
   #allows us to manage Topics on our Question form
