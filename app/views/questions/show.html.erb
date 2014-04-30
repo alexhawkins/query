@@ -23,7 +23,11 @@
       <div class="js-answers", id="js-answers">
           <%= render @answers %>
       </div>
-      <%= will_paginate @answers, :container => false %>
+
+      <div id="infinite-scrolling">
+        <%= will_paginate @answers %>
+      </div>
+      
     </div>
 
     <!--Sidebar Column -->

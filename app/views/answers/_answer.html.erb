@@ -27,7 +27,7 @@
           <% end %>
         </div>
         <!--ANSWER BODY -->
-        <p> <%= answer.body %></p>
+        <p> <%= truncate(strip_tags(answer.body), length: 500) %></p>
         <p class="answer-feed-info">
           <!--DATE ANSWER WAS CREATED-->
            <span>

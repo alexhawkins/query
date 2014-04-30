@@ -8,9 +8,11 @@ class QuestionsController < ApplicationController
   end
 
   def show
-    @question = Question.find(params[:id])
-    @answers = @question.answers.paginate(page: params[:page], per_page: 5)
-    @answer = Answer.new
+    get_and_show_answers
+  end
+
+  def show_with_button
+    get_and_show_answers
   end
 
   def new
@@ -70,7 +72,18 @@ class QuestionsController < ApplicationController
 
   end
 
+
   private 
+  
+  def get_and_show_answers
+    @question = Question.find(params[:id])
+    @answers = @question.answers.paginate(page: params[:page], per_page: 5)
+    @answer = Answer.new
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
 
   def question_params
     params.require(:question).permit(:title, :body, :answered)

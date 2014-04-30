@@ -3,45 +3,12 @@
   <!--Topic Title -->
   <h3><%= @topic.title %></h3>
    <%= render partial: 'questions/questions_form', locals: {question: @new_question, topic: @topic } %>
-    <% @questions.each do |question| %>
-     <%= content_tag :div, class: 'media', id: "questions-#{question.id}" do %>
-        <div class="media-body">
-          <div class="question-added-section">
-          <!--QUESTION ADDED TO WHAT TOPIC? -->
-            Question added to topic <%= link_to @topic.title, topic_path(@topic),  class: "label label-default" %> &bull; <%= link_to "#{time_ago_in_words(question.created_at)} ago", question_path(question) %>
-          </div>
-           <!-- QUESTION TITLE + LINK -->
-          <h4 class="media-heading">
-            <%= link_to question.title,  question_path(question) %>
-          </h4>
-          <!-- QUESTION BODY -->
-          <div class="question-body">
-            <a href="#" data-xeditable="true" data-pk="<%= question.id %>" data-model="question" data-name="body" data-url="<%= question_path(question) %>" data-title="Enter Question Details">
-              <%= question.body %>
-            </a>
-          </div>
-
-          <!-- ANSWER FORM -->
-          <%= content_tag :div, id: "js-question-answer-#{question.id}" do %>
-            <p>
-            <%= render partial: 'answers/answers_form', locals: { question: question, answer: @new_answer } %>
-            </p>
-          <% end %>
-
-          <!--LINKS: FOLLOW/ ANSWER COUNT / SHARE-->
-          <div class="answer-links">
-            <h5>
-              <%= link_to "Follow", '#' %> &bull;
-              <%= link_to "#{question.answers.count} Answers" , question_path(question, anchor: 'js-answers'), id: "js-answers-count-#{question.id}" %> &bull;
-              <%= link_to "Share", '#' %>
-            </h5>
-          </div>
-              
-        </div>
-      <% end %>
-      <hr>
-    <% end %>
-    <%= will_paginate @questions, :container => false %>
+    <div id="js-questions">
+      <%= render @questions %> 
+    </div>
+    <div id="infinite-scrolling">
+      <%= will_paginate @questions %>
+    </div>
   </div>
 
   <!--Sidebar Column -->

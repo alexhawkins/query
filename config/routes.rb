@@ -13,7 +13,8 @@ Query::Application.routes.draw do
          get '/down-vote' => 'answer_votes#down_vote', as: :down_vote
     end
   end
-
+   
+  #get '/answers_with_button', to: 'questions#show_with_button', as: 'answers_with_button'
 
   root to: 'topics#index'
 end

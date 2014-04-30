@@ -1,4 +1,5 @@
 class TopicsController < ApplicationController
+  respond_to :html, :js
   def index
     @topics = Topic.alphabetically
     authorize @topics
@@ -13,6 +14,10 @@ class TopicsController < ApplicationController
    #@answers = @q@questions.find(params[:question_id)]uestion.answers
     @new_answer = Answer.new
     #@answers = @questions.answers
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def new
