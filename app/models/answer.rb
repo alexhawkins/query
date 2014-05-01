@@ -3,7 +3,8 @@ class Answer < ActiveRecord::Base
   belongs_to :user
   has_many :answer_votes, dependent: :destroy
   has_many :topics, through: :answer_topics 
-  
+  after_create :create_vote
+  #mount_uploader :image, ImageUploader
   default_scope { order('rank DESC') }
 
   def up_votes
@@ -15,6 +16,7 @@ class Answer < ActiveRecord::Base
     self.answer_votes.where(value: -1).count
   end
 
+  #see the sum of all up and down votes in our Answer database
   def points
     self.answer_votes.sum(:value).to_i
   end
@@ -23,6 +25,13 @@ class Answer < ActiveRecord::Base
    
     new_rank = points
     self.update_attribute(:rank, new_rank)
+  end
+
+  private
+
+  # whoever created a post, should automatically be set to "voting" it up
+  def create_vote
+    user.answer_votes.create(value: 1, answer: self)
   end
 
 end

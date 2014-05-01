@@ -8,10 +8,10 @@
       <h2><strong><%= @user.name.split.map(&:capitalize).join(' ') %></strong></h2>
       <h4><%= @user.email.downcase %></h4>
     </div>
-    <ul class="page-header">
-      <li> San Francisco </li>
-      <li><%= @user.created_at.strftime("Joined on %B %d, %Y")%></li>
-    </ul>
+    <div class="page-header user-info">
+      <h4> San Francisco </h4>
+      <h4><%= @user.created_at.strftime("Joined on %B %d, %Y")%></h4>
+    </div>
   </div>
 
   <!--MAIN BODY USER PROFILE INFORMATION -->
@@ -28,14 +28,7 @@
       <div class="tab-pane active" id="votes">     
        <h4>You have voted on the following user answers: </h4>
         <% @user.answer_votes.each do |vote| %>
-          <p><%= link_to truncate(strip_tags(vote.answer.body), length: 100), '#' %></p>
-        <% end %>
-        <!--SHOW QUESTIONS USER HAS VOTED ON -->
-        <%  unless @user.answers.empty? || @user != current_user %>
-          <h1>ANSWERED THE FOLLOWING QUESTIONS</h1>
-          <% @user.answers.each do |answer| %>
-            <p><%= link_to answer.question, question_path(answer) %></p>
-          <% end %>
+          <p><%= link_to truncate(strip_tags(vote.answer.body), length: 80), '#' %></p>
         <% end %>
       </div>
       <!--User Questions -->
@@ -43,6 +36,13 @@
       </div> 
       <!--User Answers -->
       <div class="tab-pane" id="answers">
+         <!--SHOW QUESTIONS USER HAS ANSWERED -->
+        <%  unless @user.answers.empty? || @user != current_user %>
+          <h4>You answered these questions</h4>
+          <% @user.answers.each do |answer| %>
+            <p><%= link_to answer.question, question_path(answer) %></p>
+          <% end %>
+        <% end %>
       </div>
       <!--User Follwoing -->
       <div class="tab-pane" id="following">

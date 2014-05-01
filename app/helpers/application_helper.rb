@@ -3,7 +3,7 @@ module ApplicationHelper
   ## RENDER AVATAR IMAGE FOR PROFILE PAGE (DEFAULT or USER)
   def render_profile_avatar_for(user)
     if user.avatar?
-      image_tag(current_user.avatar.profile.url, class: 'media-object thumbnail').html_safe
+      image_tag(user.avatar.profile.url, class: 'media-object thumbnail').html_safe
     else
       image_tag('fallback/default.gif', height: '230px', width: '230px', class: 'media-object thumbnail').html_safe
     end
@@ -11,7 +11,7 @@ module ApplicationHelper
   ## RENDER AVATAR IMAGE FOR NAVIGATION (DEFAULT or USER)
   def render_tiny_avatar_for(user)
     if user.avatar?
-      image_tag(current_user.avatar.tiny.url).html_safe
+      image_tag(user.avatar.tiny.url).html_safe
     else
       image_tag('fallback/default.gif', height: '35px', width: '35px').html_safe
     end
@@ -20,7 +20,7 @@ module ApplicationHelper
   ## REDNER AVATARS FOR ANSWERS SECTION
   def render_answer_avatar_for(user)
     if user.avatar?
-      image_tag(current_user.avatar.tiny.url, class: 'media-object tiny-thumbnail').html_safe
+      image_tag(user.avatar.tiny.url, class: 'media-object tiny-thumbnail').html_safe
     else
       image_tag('fallback/default.gif', height: '30px', width: '30px', class: 'media-object tiny-thumbnail').html_safe
     end
@@ -28,7 +28,7 @@ module ApplicationHelper
 ## RENDER AVATAR IMAGE FOR RELATED POSTS LISTS
   def render_super_tiny_avatar_for(user)
     if user.avatar?
-      image_tag(current_user.avatar.small.url, class: 'media-object thumbnail').html_safe
+      image_tag(user.avatar.small.url, class: 'media-object thumbnail').html_safe
     else
       image_tag('fallback/default.gif', height: '35px', width: '35px', class: 'media-object thumbnail').html_safe
     end
