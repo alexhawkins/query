@@ -1,16 +1,33 @@
 <!-- QUESTION TITLE -->
 <h2>
-  <strong><%= @question.title %></strong>
-  <!-- show an edit button if user is a mebmer of the site -->
-  <% if policy(@question).edit? %>
-    <%= link_to "Edit", edit_question_path(@question),  class: 'btn btn-success btn-xs', remote: true %>
+  <!-- Allow edit in place if user is a member of the site -->
+  <!-- Also show an edit button if user is a member of the site -->
+  <% if policy(question).edit? %>
+    <span data-xeditable="true" data-pk="<%= question.id %>" data-model="question" data-name="title" data-url="<%= question_path(question) %>" data-title="Edit Title">
+      <strong><%= question.title %></strong>
+    </span>
+
+     <%= link_to "Edit", edit_question_path(question),  class: 'btn btn-success btn-xs', remote: true %>
+  <!--Otherwise just show a regular title -->
+  <% else %>
+      <strong><%= question.title %></strong>
   <% end %> 
+   
 </h2>
 <!-- QUESTION DETAILS -->
+
 <p class="lead">
-  <%= @question.body %>
-  <!-- show an edit button if user is a mebmer of the site -->
-  <% if policy(@question).edit? %>
-    <%= link_to "Edit", edit_question_path(@question),  class: 'btn btn-success btn-xs', remote: true %>
+  <% if policy(question).edit? %>
+   <span data-xeditable="true" data-pk="<%= question.id %>" data-model="question" data-name="body" data-url="<%= question_path(question) %>" data-title="Edit Question Details">
+      <%= question.body %>
+    </span>
+  <% 
+=begin %> 
+     <%= link_to "Edit", edit_question_path(question),  class: 'btn btn-success btn-xs', remote: true %>
+  <% 
+=end %>
+  <!--Otherwise just show a regular title -->
+  <% else %>
+      <%= question.body %>
   <% end %>
-  </p>
+</p>

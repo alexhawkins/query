@@ -1,11 +1,52 @@
-<%= @user.name %>
+<div class="row">
+ <!--LEFT SIDEBAR COLUMN -->
+  <div class="col-md-4">
+    <!-- SHOW USER PROFILE IMAGE -->
+    <%= render_profile_avatar_for(@user) %>
+    <!-- USER NAME -->
+    <div class="page-header">
+      <h2><strong><%= @user.name.split.map(&:capitalize).join(' ') %></strong></h2>
+      <h4><%= @user.email.downcase %></h4>
+    </div>
+    <ul class="page-header">
+      <li> San Francisco </li>
+      <li><%= @user.created_at.strftime("Joined on %B %d, %Y")%></li>
+    </ul>
+  </div>
 
-<h1>VOTED ON THE FOLLOWING ANSWERS </h1>
-<% @user.answer_votes.each do |vote| %>
-  <p><%= link_to vote.answer.body, '#' %></p>
-<% end %>
-
-<h1>ANSWERED THE FOLLOWING QUESTIONS</h1>
-<% @user.answers.each do |answer| %>
-  <p><%= link_to answer.question.title, '#' %></p>
-<% end %>
+  <!--MAIN BODY USER PROFILE INFORMATION -->
+  <div class="col-md-8">
+    <ul class="nav nav-tabs">
+      <li class="active"><a href="#votes" data-toggle="tab">Votes</a></li>
+      <li><a href="#questions" data-toggle="tab">Questions</a></li>
+      <li><a href="#answers" data-toggle="tab">Answered</a></li>
+      <li><a href="#following" data-toggle="tab">Following</a></li>
+    </ul>
+    <!-- Tab panes -->
+    <div class="tab-content">
+    <!--User Votes -->
+      <div class="tab-pane active" id="votes">     
+       <h4>You have voted on the following user answers: </h4>
+        <% @user.answer_votes.each do |vote| %>
+          <p><%= link_to truncate(strip_tags(vote.answer.body), length: 100), '#' %></p>
+        <% end %>
+        <!--SHOW QUESTIONS USER HAS VOTED ON -->
+        <%  unless @user.answers.empty? || @user != current_user %>
+          <h1>ANSWERED THE FOLLOWING QUESTIONS</h1>
+          <% @user.answers.each do |answer| %>
+            <p><%= link_to answer.question, question_path(answer) %></p>
+          <% end %>
+        <% end %>
+      </div>
+      <!--User Questions -->
+      <div class="tab-pane" id="questions">
+      </div> 
+      <!--User Answers -->
+      <div class="tab-pane" id="answers">
+      </div>
+      <!--User Follwoing -->
+      <div class="tab-pane" id="following">
+      </div>
+    </div>
+  </div>
+</div>

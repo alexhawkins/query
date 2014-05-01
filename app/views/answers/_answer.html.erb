@@ -4,13 +4,16 @@
       <!--VOTE COUNT FOR ANSWER -->
       <%= render partial: 'answer_votes/voter', locals: { question: @question, answer: answer } %>
       </a>
+
       <div class="media-body">
         <h4 class="media-heading"> 
         <!-- USER NAME and INFO OF ANSWER -->
-          <a href="#" data-xeditable="true" data-pk="<%= answer.user.id %>" data-model="user" data-name="name" data-url="<%=  user_path(answer.user) %>" data-title="Enter Name">
-          <%= answer.user.name %>
-          </a>
+          <%= link_to answer.user.name, user_path(answer.user) %>
+          <!-- RENDER A TINY AVATAR FOR THE USER OF THIS ANSWER -->
+         <%= link_to render_answer_avatar_for(answer.user), user_path(answer.user), class: 'pull-right answer-image' %>
         </h4>
+
+
         <!-- VOTERS NAME -->
         <div class="vote-names">
           <%= pluralize(answer.answer_votes.count, 'Vote') %>

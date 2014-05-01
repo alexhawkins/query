@@ -47,12 +47,16 @@ gem 'devise'
 gem 'pundit'
 gem 'figaro'
 gem 'faker'
-#gem 'cocoon'
-#gem 'simple_form'
-#gem 'slim'
+
 gem 'bootstrap-x-editable-rails'
+#install gems for endless pagination
 gem 'will_paginate', '~> 3.0.5'
 gem 'bootstrap-will_paginate', '~> 0.0.10'
+#install gems for image uploading
+gem 'carrierwave'
+gem 'mini_magick'
+#Fog is known as a "cloud services library", and basically makes uploading to S3 easier
+gem 'fog'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

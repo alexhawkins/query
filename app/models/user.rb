@@ -7,6 +7,9 @@ class User < ActiveRecord::Base
   has_many :answers, dependent: :destroy
   has_many :answer_votes, dependent: :destroy
   has_many :question_votes, dependent: :destroy
+  # Method named mount_uploader provides assisted functionality in
+  # uploading 
+  mount_uploader :avatar, AvatarUploader
   def role?(base_role)
     role == base_role.to_s
   end

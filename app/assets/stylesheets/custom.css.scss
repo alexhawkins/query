@@ -1,6 +1,11 @@
 @import "bootstrap";
 
 /*QUESTIONS */
+//singles out each individual question
+.each-question {
+  padding: 20px 0;
+  border-bottom: 1px dotted #BABABA;
+}
 
 .ask-question {
   margin-bottom: 70px;
@@ -10,9 +15,13 @@
   padding: 20px;
   //margin-bottom: 50px;
   background-color: #EBEBEB;
-   -webkit-border-radius: 5px;
+  -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
+}
+
+.question-title-space{
+  margin-top: 4px;
 }
 
 .question-added-section {
@@ -27,14 +36,13 @@
     &:hover{
      color: #BABABA;
      border-bottom: 1px dashed #BABABA;
-    }
-    &:active{
+   }
+   &:active{
      color: #BABABA;
      border-bottom: 1px dashed #BABABA;
-    }
-  }
+   }
+ }
 }
-
 
 /*ANSWERS*/
 
@@ -48,8 +56,8 @@
 }
 
 .answer-feed-info{
-padding-bottom: 20px;
-border-bottom: 1px solid #DDD;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #DDD;
 }
 
 // hide items on page
@@ -84,4 +92,30 @@ border-bottom: 1px solid #DDD;
   color: #999999;
   font-size: .9em;
   font-style: italic;
+}
+
+
+/*BOOTSTRAP X-EDITABLE TWEAKS*/
+a.editable-pre-wrapped {
+white-space: normal;
+}
+
+.editable-click {
+  border-bottom: 1px dashed #BABABA;
+  &:hover{
+    cursor: pointer;
+  }
+}
+
+/*IMAGES*/
+.answer-image{
+  margin-left: 10px;
+}
+
+.tiny-thumbnail{
+padding: 2px;
+border: 1px solid #dddddd;
+border-radius: 2px;
+-webkit-border-radius: 2px;
+-moz-border-radius: 2px;
 }

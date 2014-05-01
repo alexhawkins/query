@@ -1,13 +1,13 @@
 <div class="row">
   <div class="col-md-6 col-md-offset-1">
   <!--TOPIC TITLE -->
-  <h2><%= @topic.title.capitalize %></h2>
+  <h2><%= @topic.title.upcase %></h2>
     <!--ASK QUESTION FORM -->
     <div class="ask-question">
     <%= render partial: 'questions/questions_form', locals: {question: @new_question, topic: @topic } %>
     </div>
     <!--QUESTIONS-->
-    <div id="js-questions" class="pull-left">
+    <div id="js-questions">
       <%= render @questions %> 
     </div>
     <!--INFINITE SCROLLING -->

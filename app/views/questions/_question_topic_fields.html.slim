@@ -1,5 +1,0 @@
-.nested-fields.question-topic-fields
-  #topic_from_list
-    = f.association :topic, :collection => Topic.all(:order => 'title'), :prompt => 'Choose an existing topic'
-  = link_to_add_association 'or create a new topic', f, :topic, :render_options => { :wrapper => 'inline' }
-  = link_to_remove_association "remove topic', f

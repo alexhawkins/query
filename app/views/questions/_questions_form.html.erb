@@ -1,7 +1,7 @@
 <!-- add remote: true to enable Ajax on the form -->
 <%= form_for [question] do |f| %>
   <div class="form-group answer-form ask-question-form">
-    <%= f.text_area :title, rows: 1, cols: 40, class: 'form-control', placeholder: "What is your question?" %>
+    <%= f.text_area :title, rows: 1, cols: 40, class: 'form-control', placeholder: "What is your question about #{topic.title.capitalize}?" %>
   </div>
 
   <%= hidden_field_tag "topic_id", topic.id %>

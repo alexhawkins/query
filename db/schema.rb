@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140428174630) do
+ActiveRecord::Schema.define(version: 20140501004518) do
 
   create_table "answer_topics", force: true do |t|
     t.integer  "answer_id"
@@ -104,6 +104,7 @@ ActiveRecord::Schema.define(version: 20140428174630) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "role"
+    t.string   "avatar"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

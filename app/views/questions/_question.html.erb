@@ -1,4 +1,4 @@
-<%= content_tag :div, class: 'media', id: "questions-#{question.id}" do %>
+<%= content_tag :div, class: 'media each-question', id: "questions-#{question.id}" do %>
         <div class="media-body">
           <div class="question-added-section">
           <!--QUESTION ADDED TO WHAT TOPIC? -->
@@ -9,12 +9,12 @@
             <% end %>
           </div>
            <!-- QUESTION TITLE + LINK -->
-          <h4 class="media-heading">
+          <h4 class="media-heading question-title-space">
             <%= link_to question.title,  question_path(question) %>
           </h4>
           <!-- QUESTION BODY -->
           <div class="question-body">
-            <a href="#" data-xeditable="true" data-pk="<%= question.id %>" data-model="question" data-name="body" data-url="<%= question_path(question) %>" data-title="Enter Question Details">
+            <a href="#" data-xeditable="true" data-type="textarea" data-pk="<%= question.id %>" data-model="question" data-name="body" data-url="<%= question_path(question) %>" data-title="Edit Question Details">
               <%= question.body %>
             </a>
           </div>
@@ -36,4 +36,3 @@
               
         </div>
     <% end %>
-    <hr>

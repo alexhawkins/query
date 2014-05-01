@@ -1,0 +1,9 @@
+<% if @question.valid? %>
+//Prepend question to the top of all of our questions
+$('.js-questions').prepend("<%= escape_javascript(render(@question)) %>");
+//Clear the question form with a new one
+$('.new_question').html("<%= escape_javascript(render partial: 'question/questions_form', locals: { question: @new_question, topic: @topic }) %>");
+<% else %>
+//if the question is invalid, render a new question form and have the user start over
+$('.new_question').html("<%= escape_javascript(render partial: 'question/questions_form', locals: { question: @new_question, topic: @topic }) %>");
+<% end %>
