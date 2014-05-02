@@ -5,7 +5,7 @@ require 'faker'
   user = User.new(
     name:     Faker::Name.name,
     email:    Faker::Internet.email,
-    password: Faker::Lorem.characters(10)
+    password: 'helloworld'
   )
   user.skip_confirmation!
   user.save
@@ -38,17 +38,18 @@ questions = Question.all
     question: questions.sample,
     body: Faker::Lorem.paragraph
   )
+end
 
   # create n number of votes for answer
-  10.times do
-    val = Random.new.rand(-1..1)
-    val = val == 0 ? 1 : val 
-    vote = answer.answer_votes.create(
-      value: val,
-      user: users.sample
-    ) 
-  end
-end
+ # 10.times do
+   # val = Random.new.rand(-1..1)
+ #   val = val == 0 ? 1 : val 
+  #  vote = answer.answer_votes.create(
+  #    value: val,
+  #    user: users.sample
+  #  ) 
+ # end
+#end
 
 100.times do
   QuestionTopic.create(

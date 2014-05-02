@@ -1,4 +1,8 @@
 class Question < ActiveRecord::Base
+
+  #for searching with ElasticSearch and Searchkick
+  #searchkick
+
   #has_and_belongs_to_many :topics # topic_id foreign key
   has_many :question_topics, dependent: :destroy
   # a question does have many topics as long as we go through question_topics to get there
@@ -13,6 +17,7 @@ class Question < ActiveRecord::Base
   has_many :follows, dependent: :destroy
 
   default_scope { order('created_at DESC') }
+
 
   # override to_params so that it provides a 'munged' version of the question title,
   # courtesy of the parameterize method

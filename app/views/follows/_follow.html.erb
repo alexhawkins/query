@@ -1,6 +1,7 @@
 <%= content_tag :div, id: "follow-#{question.id}" do %>
   <div class="follow pull-right">
-    <% if follow = current_user.followed(question) %>
+  <% if current_user %>
+    <% if follow = current_user.followed(question)  %>
       <%= link_to [question, follow], title:'Unfollow', remote: true, method: :delete do %>
         <i class="glyphicon glyphicon-check"></i>
       <% end %>
@@ -9,5 +10,6 @@
         <i class="glyphicon glyphicon-unchecked"></i>
       <% end %>
     <% end %>
+  <% end %>
   </div>
 <% end %>

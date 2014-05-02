@@ -4,7 +4,7 @@ class FollowsController < ApplicationController
   def create
     @question = Question.find(params[:question_id])
     follow = current_user.follows.build(question: @question)
-
+      
     if follow.save
       ##flash[:notice] = "Followed Question"
       ##redirect_to :back

@@ -3,9 +3,7 @@ class QuestionsController < ApplicationController
   respond_to :html, :js
 
   def index
-    @topic = Topic.find(params[:topic_id])
-    @questions = @topic.questions
-    authorize @questions
+    
   end
 
   def show

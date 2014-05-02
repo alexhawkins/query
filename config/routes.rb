@@ -1,5 +1,6 @@
 Query::Application.routes.draw do
 
+  get "search/index"
   devise_for :users
   resources :users, only: [:show, :update, :index]
   get "home/index"
