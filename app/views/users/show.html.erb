@@ -40,12 +40,16 @@
         <%  unless @user.answers.empty? || @user != current_user %>
           <h4>You answered these questions</h4>
           <% @user.answers.each do |answer| %>
-            <p><%= link_to answer.question, question_path(answer) %></p>
+            <p><%= link_to(answer.question.title, question_path(answer)) if answer.question %></p>
           <% end %>
         <% end %>
       </div>
       <!--User Follwoing -->
       <div class="tab-pane" id="following">
+        <h4>You are following these questions:</h4>
+        <% @user.follows.each do |follow| %>
+            <p><%= link_to(follow.question.title, question_path(follow.question)) if follow.question %></p>
+        <% end %>
       </div>
     </div>
   </div>

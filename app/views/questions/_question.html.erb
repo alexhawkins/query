@@ -1,4 +1,6 @@
 <%= content_tag :div, class: 'media each-question', id: "questions-#{question.id}" do %>
+   <!-- FOLLOW QUESTION BUTTON -->
+          <%= render partial: 'follows/follow', locals: { question: question } %>
         <div class="media-body">
           <div class="question-added-section">
           <!--QUESTION ADDED TO WHAT TOPIC? -->

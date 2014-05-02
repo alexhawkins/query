@@ -1,0 +1,1 @@
+$('#follow-' +<%= @question.id %>).html("<%= escape_javascript(render partial: 'follows/follow', locals: { question: @question }) %>");

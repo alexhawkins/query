@@ -10,7 +10,7 @@ class Question < ActiveRecord::Base
   belongs_to :user # user_id foreign key
   has_many :answers, dependent: :destroy
   has_many :question_votes, dependent: :destroy
- 
+  has_many :follows, dependent: :destroy
 
   default_scope { order('created_at DESC') }
 

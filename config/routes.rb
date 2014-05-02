@@ -6,6 +6,7 @@ Query::Application.routes.draw do
   resources :topics
 
   resources :questions do
+    resources :follows, only: [:create, :destroy]
       get '/up-vote' => 'question_votes#up_vote', as: :up_vote
       get '/down-vote' => 'question_votes#down_vote', as: :down_vote
     resources :answers, only: [:create, :destroy, :show, :edit, :new] do
