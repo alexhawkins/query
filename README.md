@@ -6,7 +6,7 @@
 
 * Source code [available on Gitbub](https://github.com/alexhawkins/query) 
 
-* Demo available on [Heroku](http://lit-peak-5935.herokuapp.com/)
+* Demo available on [Heroku](https://alexhawkins-query.herokuapp.com)
 
 ##Setup
 
